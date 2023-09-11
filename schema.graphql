@@ -4,6 +4,7 @@
 
 type Mutation {
   createProduct(name: String!, price: Float!): Product!
+  createUser(username: String!): User!
 }
 
 type Product {
@@ -14,4 +15,10 @@ type Product {
 
 type Query {
   products: [Product]!
+  users: [User!]!
+}
+
+type User {
+  id: Int!
+  username: String!
 }

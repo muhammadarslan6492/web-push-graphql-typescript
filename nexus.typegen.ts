@@ -35,6 +35,10 @@ export interface NexusGenObjects {
     price: number; // Float!
   }
   Query: {};
+  User: { // root type
+    id: number; // Int!
+    username: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -50,6 +54,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createProduct: NexusGenRootTypes['Product']; // Product!
+    createUser: NexusGenRootTypes['User']; // User!
   }
   Product: { // field return type
     id: number; // Int!
@@ -58,12 +63,18 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     products: Array<NexusGenRootTypes['Product'] | null>; // [Product]!
+    users: NexusGenRootTypes['User'][]; // [User!]!
+  }
+  User: { // field return type
+    id: number; // Int!
+    username: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     createProduct: 'Product'
+    createUser: 'User'
   }
   Product: { // field return type name
     id: 'Int'
@@ -72,6 +83,11 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     products: 'Product'
+    users: 'User'
+  }
+  User: { // field return type name
+    id: 'Int'
+    username: 'String'
   }
 }
 
@@ -80,6 +96,9 @@ export interface NexusGenArgTypes {
     createProduct: { // args
       name: string; // String!
       price: number; // Float!
+    }
+    createUser: { // args
+      username: string; // String!
     }
   }
 }

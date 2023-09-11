@@ -1,23 +1,23 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
+  BaseEntity,
   Column,
+  CreateDateColumn,
+  Entity,
   OneToMany,
-  JoinColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
+
 import { Notification } from "./Notification";
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column({ unique: true })
   username!: string;
 
-  @OneToMany(() => Notification, (notification) => notification.user, {
-    cascade: true,
-  })
-  @JoinColumn({ name: "user_id" }) // Name of the foreign key column in the Notification table
-  notifications: Notification[] = [];
+  @OneToMany(() => Notification, (notification) => notification.user)
+  notification!: Notification[];
 }
